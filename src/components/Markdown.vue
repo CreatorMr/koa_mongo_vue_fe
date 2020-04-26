@@ -10,10 +10,11 @@ import {
 
 @Component
 export default class Markdown extends Vue {
-  constructor() {
-    super()
-    this.content = ''
-  }
+  // constructor() {
+  //   super()
+  //   this.content = ''
+  // }
+  content = ''
 }
 </script>
 <style>

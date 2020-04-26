@@ -34,10 +34,10 @@ export const parseUrl = (url) => {
   const decoder = (v) => {
     return window.decodeURIComponent(v)
   }
-  let parts = url.split('?')
-  let uri = parts[0]
-  let [query, hash] = parts[1] ? parts[1].split('#') : ['', '']
-  let params = qs.parse(query, {decoder})
+  const parts = url.split('?')
+  const uri = parts[0]
+  const [query, hash] = parts[1] ? parts[1].split('#') : ['', '']
+  const params = qs.parse(query, {decoder})
 
   return {uri, hash, params}
 }
@@ -48,7 +48,7 @@ export const parseUrl = (url) => {
 * @return {string} {url}
 */
 export const buildQuery = (params, url = null) => {
-  let argUrl = url
+  const argUrl = url
   const encoder = (v) => {
     return window.encodeURIComponent(v)
   }
@@ -58,9 +58,9 @@ export const buildQuery = (params, url = null) => {
     return qs.stringify(params, {encoder})
   }
 
-  let urlObj = parseUrl(url)
+  const urlObj = parseUrl(url)
   params = Object.assign(urlObj.params, params)
-  let query = qs.stringify(params, {encoder})
+  const query = qs.stringify(params, {encoder})
   let newUrl = urlObj.uri
   if (query) {
     newUrl = newUrl + '?' + query

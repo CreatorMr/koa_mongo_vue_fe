@@ -6,8 +6,8 @@ import Cookies from 'js-cookie'
 import { request as httpRequest, parseQuery } from './http'
 
 const getCommonParam = () => {
-  let param = {}
-  let queryParams = parseQuery()
+  const param = {}
+  const queryParams = parseQuery()
   if (queryParams.fromSource) {
     param.fromSource = queryParams.fromSource
   }
@@ -15,7 +15,7 @@ const getCommonParam = () => {
 }
 
 const getCommonHeader = () => {
-  let headers = {}
+  const headers = {}
   return headers
 }
 
@@ -53,11 +53,11 @@ export const getRejection = (rejection) => {
 * 通用请求参数
 */
 export const request = async ({ url, data, method = 'get', params = {}, timeout, flags, apiUrl }) => {
-  let headers = getCommonHeader()
-  let commonParams = getCommonParam()
+  const headers = getCommonHeader()
+  const commonParams = getCommonParam()
   timeout = timeout || 10000
-  let allParams = Object.assign({}, commonParams, params)
-  let config = {
+  const allParams = Object.assign({}, commonParams, params)
+  const config = {
     url,
     method,
     data,
@@ -65,16 +65,16 @@ export const request = async ({ url, data, method = 'get', params = {}, timeout,
     timeout,
     params: allParams,
   }
-  let successFun = function (res) {
+  const successFun = function (res) {
     if (res.data && res.data.code && res.data.msg !== undefined) {
       return Promise.reject(res)
     } else {
       return Promise.resolve(res.data)
     }
   }
-  let failFun = function (rejection) {
+  const failFun = function (rejection) {
     console.log('request rej', rejection)
-    let rj = getRejection(rejection)
+    const rj = getRejection(rejection)
     console.log('rj', rj)
     if (rj.status === 401) { // 鉴权
       // TODO 重新登录

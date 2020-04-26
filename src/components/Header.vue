@@ -83,10 +83,9 @@ export default class Header extends Vue {
   drawerClick(type: boolean) {
     this.drawer = !this.drawer
     if (!type) {
-      console.log(this.$refs.sidebar.style)
-      this.$refs.sidebar.style.transform = "translateX(0)"
+      this.$refs.sidebar['style'].transform = "translateX(0)"
     } else {
-      this.$refs.sidebar.style.transform = "translateX(-100%)"
+      this.$refs.sidebar['style'].transform = "translateX(-100%)"
     }
   }
 }
