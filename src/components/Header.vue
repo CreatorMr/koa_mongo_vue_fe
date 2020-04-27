@@ -50,11 +50,14 @@
       <div class="num">
         <div>
           <h3>27</h3>
-          <h6>文章</h6>
+          <h6><router-link class="header__nav-item" :to="{name: 'About'}">文章</router-link></h6>
         </div>
         <div>
           <h3>27</h3>
           <h6>标签</h6>
+        </div>
+         <div>
+          <h6>个人中心</h6>
         </div>
       </div>
       <hr>
