@@ -1,9 +1,5 @@
-/**
- * Created by Nick on 2016/12/29.
- */
-// import {win} from 'sdk/window'
 import qs from 'qs'
-import axios from '@mfs/sec-sign-axios'
+import axios from 'axios'
 /**
 * @function request
 * @param  {object} config {请求参数}
@@ -11,17 +7,19 @@ import axios from '@mfs/sec-sign-axios'
 * @see {@link https://github.com/mzabriskie/axios}
 */
 
-export const request = (config) => {
-  return axios.request(config)
-}
-
-/**
-* @function parseQuery
-* @param  {string} url {要解析的串，空则使用location.href}
-* @return {object} {参数对象}
-*/
-export const parseQuery = (url) => {
-  return parseUrl(url).params
+export const request = (url, options = {}, baseUrl = 'http://localhost:3000') => {
+  console.log(baseUrl, 'baseUrl')
+  const params = options.params || {}
+  // return axios(baseUrl + url, Object.assign(options, { params, withCredentials: true }))
+  return axios(url, Object.assign(options, { params, withCredentials: true }))
+          .then((response) => {
+            const data = response.data
+            // 登陆失效码
+            if (data.errno === 9999) {
+              // 登录接口
+            }
+            return response.data
+          })
 }
 
 /**
@@ -41,6 +39,16 @@ export const parseUrl = (url) => {
 
   return {uri, hash, params}
 }
+/**
+* @function parseQuery
+* @param  {string} url {要解析的串，空则使用location.href}
+* @return {object} {参数对象}
+*/
+export const parseQuery = (url) => {
+  return parseUrl(url).params
+}
+
+
 /**
 * @function buildQuery
 * @param  {object} params     {参数对象}

@@ -16,10 +16,13 @@
           <router-link class="header__nav-item" :to="{name: 'Home'}">Home</router-link>
         </li>
         <li>
-          <router-link class="header__nav-item" :to="{name: 'About'}">文章</router-link>
+          <router-link class="header__nav-item" :to="{name: 'Article'}">文章</router-link>
         </li>
         <li>
-          <router-link class="header__nav-item" :to="{name: 'pages'}">分类</router-link>
+          <router-link class="header__nav-item" :to="{name: 'ArticleDetail'}">详情</router-link>
+        </li>
+        <li>
+          <router-link class="header__nav-item" :to="{name: 'About'}">分类</router-link>
         </li>
         <li>
           <router-link class="header__nav-item" :to="{name: 'pages'}">标签</router-link>
@@ -50,13 +53,15 @@
       <div class="num">
         <div>
           <h3>27</h3>
-          <h6><router-link class="header__nav-item" :to="{name: 'About'}">文章</router-link></h6>
+          <h6>
+            <router-link class="header__nav-item" :to="{name: 'About'}">文章</router-link>
+          </h6>
         </div>
         <div>
           <h3>27</h3>
           <h6>标签</h6>
         </div>
-         <div>
+        <div>
           <h6>个人中心</h6>
         </div>
       </div>
@@ -97,6 +102,7 @@ export default class Header extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+
 .header-wrap {
   width: 100%;
   position: relative;
@@ -146,6 +152,7 @@ a {
     align-items: center;
     height: 60px;
     background: #FFF;
+
     .logo {
       .logo-name {
         display: flex;
@@ -193,6 +200,7 @@ a {
   .mobile {
     display: none;
   }
+
   .sidebar {
     display: none;
   }
