@@ -1,109 +1,127 @@
 <template>
-  <div class="main slider">
-    <!-- <img class="right-logo"
-         src="../assets/userLogo.jpeg"
-         alt=""> -->
-    <div class="title">Creator Mr</div>
-    <div class="main-content">
-    </div>
-    <div class="tags">
-      <div class="title">标签云</div>
-      <router-link v-for="item in list"
-                   class="item"
-                   :key="item._id"
-                   :to="`/articles?tag_id=${item._id}&tag_name=${item.name}&category_id=`">
-        <span :key="item._id">{{item.name}}</span>
-      </router-link>
-    </div>
+<div class="main slider">
+  <img class="main-logo" src="../assets/logo.jpg" alt="">
+  <div class="title">Creator Mr</div>
+  <div class="main-content">
   </div>
+  <div class="tags">
+    <div class="title">标签云</div>
+    <router-link class="item"  to="/article">
+      <span>全部</span>
+    </router-link>
+    <router-link v-for="item in list" class="item" :key="item._id" :to="`/article?tag_id=${item._id}&tag_name=${item.name}`">
+      <span :key="item._id">{{item.name}}</span>
+    </router-link>
+  </div>
+</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {
+  Component,
+  Vue
+} from "vue-property-decorator";
 // import { Params, TagsData } from "@/types/index";
-import { getTagsList } from "../api/article.js"
+import {
+  getTagsList
+} from '../api/article.js'
 
 @Component
 export default class Slider extends Vue {
   private isLoadEnd: boolean = false;
   private isLoading: boolean = false;
-  private list: Array<object> = [];
+  private list: Array < object > = [];
 
   mounted(): void {
     this.handleSearch();
   }
 
-  private async handleSearch(): Promise<void> {
+  private async handleSearch(): Promise < void > {
     this.isLoading = true;
     const data = await getTagsList({})
-    this.list = data
+    this.list = data.tagsList
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less">
+<style lang="less" scoped>
 .slider {
   padding-top: 50px;
 }
+
 .main {
   text-align: center;
+  padding: 20px;
   .main-logo {
     width: 130px;
     border-radius: 50%;
     animation: mylogo 3s;
-    -moz-animation: mylogo 3s; /* Firefox */
-    -webkit-animation: mylogo 3s; /* Safari and Chrome */
-    -o-animation: mylogo 3s; /* Opera */
+    -moz-animation: mylogo 3s;
+    /* Firefox */
+    -webkit-animation: mylogo 3s;
+    /* Safari and Chrome */
+    -o-animation: mylogo 3s;
+    /* Opera */
     animation-iteration-count: infinite;
   }
+
   .title {
     font-size: 25px;
     font-weight: bold;
   }
+
   .main-content {
     padding: 10px 0 20px 0;
     margin-bottom: 10px;
     border-bottom: 1px solid #eee;
+
     .item {
       display: inline-block;
       padding: 0 10px;
       color: #969696;
       border-right: 1px solid #eee;
+
       &:last-child {
         border-right: none;
       }
+
       .num {
         color: #333;
       }
     }
   }
+
   .introduce {
     margin-bottom: 10px;
     border-bottom: 1px solid #eee;
+
     .title {
       font-size: 14px;
       color: #969696;
     }
+
     .content {
       color: #333;
       line-height: 26px;
       text-align: left;
       padding: 20px 0;
     }
+
     .footer {
       padding-bottom: 10px;
     }
   }
+
   .tags {
     min-height: 200px;
     padding: 5px 0 20px 0;
     margin-bottom: 10px;
     border-bottom: 1px solid #eee;
+
     .title {
       font-size: 14px;
       color: #969696;
     }
+
     .item {
       display: inline-block;
       cursor: pointer;
@@ -113,17 +131,21 @@ export default class Slider extends Vue {
       color: #333;
       margin: 10px 10px 0 0;
       text-decoration: none;
+
       &:hover {
         color: #409eff;
       }
     }
   }
+
   .classification {
     padding: 5px 0 20px 0;
+
     .title {
       font-size: 14px;
       color: #969696;
     }
+
     .item {
       text-align: center;
       padding: 10px;
@@ -133,15 +155,18 @@ export default class Slider extends Vue {
     }
   }
 }
+
 @keyframes mylogo {
   0% {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
   }
+
   25% {
     transform: rotate(0deg) scale(1, 1);
     opacity: 0.8;
   }
+
   100% {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
@@ -153,10 +178,12 @@ export default class Slider extends Vue {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
   }
+
   25% {
     transform: rotate(0deg) scale(1, 1);
     opacity: 0.8;
   }
+
   100% {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
@@ -168,10 +195,12 @@ export default class Slider extends Vue {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
   }
+
   25% {
     transform: rotate(0deg) scale(1, 1);
     opacity: 0.8;
   }
+
   100% {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
@@ -183,10 +212,12 @@ export default class Slider extends Vue {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;
   }
+
   25% {
     transform: rotate(0deg) scale(1, 1);
     opacity: 0.8;
   }
+
   100% {
     transform: rotate(0deg) scale(0.8, 0.8);
     opacity: 1;

@@ -1,9 +1,9 @@
 import { request } from "./http.js"
 
-export const getList = (param) => {
+export const getList = (params) => {
   return request('/api/admin/article',  {
     method: 'GET',
-    param
+    params
   })
 }
 

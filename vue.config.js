@@ -67,15 +67,11 @@ module.exports = {
     open: false,
     host: "localhost",
     port: 8888, //8080,
-    https: false,
-    hotOnly: false,
     proxy: {
       // 设置代理
-      // proxy all requests starting with /api to jsonplaceholder
       "/api": {
         // target: "https://换成自己的服务器地址/",
         target: "http://localhost:3000/",
-        // target: "http://47.106.136.114/",
         changeOrigin: true,
         ws: true,
         pathRewrite: {

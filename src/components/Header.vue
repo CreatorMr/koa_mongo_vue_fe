@@ -28,7 +28,7 @@
           <router-link class="header__nav-item" :to="{name: 'pages'}">标签</router-link>
         </li>
         <li>
-          <router-link class="header__nav-item" :to="{name: 'pages'}">个人中心</router-link>
+          <router-link class="header__nav-item" :to="{name: 'About'}">个人中心</router-link>
         </li>
         <li class="github">
           <a href="https://github.com/CreatorMr" target="_blank">
@@ -52,13 +52,13 @@
       </h3>
       <div class="num">
         <div>
-          <h3>27</h3>
+          <h3>{{articleCount}}</h3>
           <h6>
-            <router-link class="header__nav-item" :to="{name: 'About'}">文章</router-link>
+            <router-link class="header__nav-item" :to="{name: 'Article'}">文章</router-link>
           </h6>
         </div>
         <div>
-          <h3>27</h3>
+          <h3>{{tagCount}}</h3>
           <h6>标签</h6>
         </div>
         <div>
@@ -83,18 +83,36 @@ import {
   Prop,
   Vue
 } from 'vue-property-decorator';
-
+import { getList, getTagsList } from "../api/article.js"
+import  { isMobile } from "../utils/utils.js"
 @Component
 export default class Header extends Vue {
   @Prop() private msg!: string;
   drawer = false
+  articleCount = 0
+  tagCount = 0
   drawerClick(type: boolean) {
     this.drawer = !this.drawer
     if (!type) {
       this.$refs.sidebar['style'].transform = "translateX(0)"
+      this.getCount()
     } else {
       this.$refs.sidebar['style'].transform = "translateX(-100%)"
     }
+  }
+
+  async getCount() {
+     const res = await getList({})
+        this.articleCount = res.count
+        const resTag = await getTagsList({})
+        this.tagCount = resTag.tagsList.length
+  }
+  async mounted () {
+    // 判断移动端情况  请求获取文章和标签数量接口
+    if(isMobile()) {
+      this.getCount()
+    }
+  
   }
 }
 </script>
