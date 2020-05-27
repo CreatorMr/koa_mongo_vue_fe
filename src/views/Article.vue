@@ -3,10 +3,12 @@
     <h3 v-if="params.tag_id"
         class="left-title">{{tag_name}} 相关的文章：</h3>
     <div v-for="item in articleList" :key="item._id" class="article-item">
+       <router-link class="router-link" :to="`/articleDetail?articleId=${item._id}`">
       title: {{item.title}}
       tags: {{item.tags}}
       分类: {{item.category}}
       描述简介: {{item.desc}}
+       </router-link>
     </div>
     
   </div>
@@ -32,10 +34,12 @@ export default class Article extends Vue {
     pageSize: 10
   };
   async getArticleList() {
-    const res = await getList({param:this.params})
+    const res = await getList(this.params)
     this.articleList = res.data
   }
   mounted () {
+    // this.$route.query
+    this.routeChange(this.$route, this.$route);
     this.getArticleList()
   }
   
@@ -56,7 +60,7 @@ export default class Article extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .article {
-  /* margin: 100px 400px; */
+  margin: 5px 20px 100px;
 }
 .article-item {
   display: flex;
@@ -71,5 +75,8 @@ export default class Article extends Vue {
 }
 .article-item:nth-child(even) {
   background: #7fcfe9;
+}
+.router-link {
+  text-decoration: none;
 }
 </style>

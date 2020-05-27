@@ -19,6 +19,6 @@ export default class Markdown extends Vue {
 </script>
 <style>
 .v-note-wrapper{
-  z-index: 18;
+  z-index: 0;
 }
 </style>

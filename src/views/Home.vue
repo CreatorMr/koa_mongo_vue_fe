@@ -1,53 +1,91 @@
 <template>
-  <div class="home">
-      <ul class="info">
-        <li>
-          <router-link class="header__nav-item" :to="{name: 'Home'}">Home</router-link>
-        </li>
-        <li>
-          <router-link class="header__nav-item" :to="{name: 'Article'}">文章</router-link>
-        </li>
-         <li>
-          <router-link class="header__nav-item" :to="{name: 'ArticleDetail'}">详情</router-link>
-        </li>
-        <li>
-          <router-link class="header__nav-item" :to="{name: 'About'}">分类</router-link>
-        </li>
-        <li>
-          <router-link class="header__nav-item" :to="{name: 'pages'}">标签</router-link>
-        </li>
-        <li>
-          <router-link class="header__nav-item" :to="{name: 'pages'}">个人中心</router-link>
-        </li>
-        <li class="github">
-          <a href="https://github.com/CreatorMr" target="_blank">
-            <img src="../assets/github.jpeg" />
-            github
-          </a>
-
-        </li>
-      </ul>
-  </div>
+<div class="home">
+  <swiper ref="mySwiper" :options="swiperOptions">
+    <swiper-slide>
+      <img class="bgImg" src="../assets/timg.jpeg" alt="" srcset="">
+      <SwiperSlideCom bg="../assets/timg.jpeg"/>
+    </swiper-slide>
+    <swiper-slide>
+      <img class="bgImg" src="../assets/timg2.jpeg" alt="" srcset="">
+      <SwiperSlideCom />
+    </swiper-slide>
+    <swiper-slide>
+      <SwiperSlideCom />
+    </swiper-slide>
+    <swiper-slide>
+      <SwiperSlideCom />
+    </swiper-slide>
+    <swiper-slide>
+      <SwiperSlideCom />
+    </swiper-slide>
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import test from '../components/test.md'
+import SwiperSlideCom from '../components/swiper-slide.vue'
+import {
+  Swiper,
+  SwiperSlide,
+  directive
+} from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    Swiper,
+    SwiperSlide,
+    SwiperSlideCom
+  },
+  directives: {
+    swiper: directive
   },
   data() {
     return {
-      a: test
+      a: test,
+      swiperOptions: {
+        direction: 'vertical',
+        slidesPerView: 1,
+        mousewheel: true,
+        height: window.innerHeight, // 高度设置，占满设备高度
+        autoplay: false,
+        speed: 1500,
+        loop: false
+      }
     }
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    }
+  },
+  mounted() {
+    console.log('Current Swiper instance object', this.swiper)
+    // this.swiper.slideTo(1, 1500, false)
   }
 }
 </script>
+
 <style lang="scss" scoped>
-.home{
+.home {
   width: 100%;
 }
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+ .bgImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

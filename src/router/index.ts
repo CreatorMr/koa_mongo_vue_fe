@@ -35,6 +35,18 @@ Vue.use(VueRouter)
     name: "ArticleDetail",
     component: () =>
       import(/* webpackChunkName: "articleDetail" */ "../views/articleDetail.vue")
+  },
+  {
+    path: "/tags",
+    name: "Tags",
+    component: () =>
+      import(/* webpackChunkName: "articleDetail" */ "../views/Tags.vue")
+  },
+  {
+    path: "/category",
+    name: "Category",
+    component: () =>
+      import(/* webpackChunkName: "articleDetail" */ "../views/Category.vue")
   }
 ]
 

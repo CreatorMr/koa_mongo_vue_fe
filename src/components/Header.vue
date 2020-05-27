@@ -19,13 +19,10 @@
           <router-link class="header__nav-item" :to="{name: 'Article'}">文章</router-link>
         </li>
         <li>
-          <router-link class="header__nav-item" :to="{name: 'ArticleDetail'}">详情</router-link>
+          <router-link class="header__nav-item" :to="{name: 'Category'}">分类</router-link>
         </li>
         <li>
-          <router-link class="header__nav-item" :to="{name: 'About'}">分类</router-link>
-        </li>
-        <li>
-          <router-link class="header__nav-item" :to="{name: 'pages'}">标签</router-link>
+          <router-link class="header__nav-item" :to="{name: 'Tags'}">标签</router-link>
         </li>
         <li>
           <router-link class="header__nav-item" :to="{name: 'About'}">个人中心</router-link>
@@ -57,9 +54,13 @@
             <router-link class="header__nav-item" :to="{name: 'Article'}">文章</router-link>
           </h6>
         </div>
+         <div>
+          <h3>{{cateCount}}</h3>
+          <router-link class="header__nav-item" :to="{name: 'Category'}">分类</router-link>
+        </div>
         <div>
           <h3>{{tagCount}}</h3>
-          <h6>标签</h6>
+          <router-link class="header__nav-item" :to="{name: 'Tags'}">标签</router-link>
         </div>
         <div>
           <h6>个人中心</h6>
@@ -83,14 +84,21 @@ import {
   Prop,
   Vue
 } from 'vue-property-decorator';
-import { getList, getTagsList } from "../api/article.js"
-import  { isMobile } from "../utils/utils.js"
+import {
+  getList,
+  getTagsList,
+  getCategoryList
+} from "../api/article.js"
+import {
+  isMobile
+} from "../utils/utils.js"
 @Component
 export default class Header extends Vue {
   @Prop() private msg!: string;
   drawer = false
   articleCount = 0
   tagCount = 0
+  cateCount = 0
   drawerClick(type: boolean) {
     this.drawer = !this.drawer
     if (!type) {
@@ -102,17 +110,19 @@ export default class Header extends Vue {
   }
 
   async getCount() {
-     const res = await getList({})
-        this.articleCount = res.count
-        const resTag = await getTagsList({})
-        this.tagCount = resTag.tagsList.length
+    const res = await getList({})
+    this.articleCount = res.count
+    const resTag = await getTagsList({})
+    this.tagCount = resTag.tagsList.length
+    const resCate = await getCategoryList({})
+    this.cateCount = resCate.cateList.length
   }
-  async mounted () {
+  async mounted() {
     // 判断移动端情况  请求获取文章和标签数量接口
-    if(isMobile()) {
+    if (isMobile()) {
       this.getCount()
     }
-  
+
   }
 }
 </script>
@@ -120,7 +130,6 @@ export default class Header extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-
 .header-wrap {
   width: 100%;
   position: relative;

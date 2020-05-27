@@ -1,13 +1,14 @@
 <template>
 <div id="app" class="container">
-  <Header v-if="isShowNav"/>
-  <Nav v-if="isShowNav" />
-  <div class="layout">
-    <Slider v-if="isShowSlider"></Slider>
-    <router-view />
-  </div>
-  <!-- <ArrowUp></ArrowUp> -->
-  <Footer v-show="isShowNav"></Footer>
+  <template  v-if="isShowNav" >
+    <Header/>
+    <div class="layout">
+      <Slider v-if="isShowSlider"></Slider>
+      <router-view />
+    </div>
+    <Footer/>
+  </template>
+  <router-view v-else class="a"/>
 </div>
 </template>
 
@@ -22,10 +23,13 @@ import {
 } from "vue-router";
 import Header from "@/components/Header.vue"
 import Slider from "@/components/Slider.vue"
+import Footer from "@/components/Footer.vue"
+import { Action } from "vuex-class";
 @Component({
   components: {
     Header,
-    Slider
+    Slider,
+    Footer
   },
 })
 export default class App extends Vue {
@@ -33,6 +37,7 @@ export default class App extends Vue {
   private isShowNav: boolean = false;
   // 是否显示slider
   private isShowSlider: boolean = false;
+  @Action('userInit') userInit
   mounted(): void {
     this.routeChange(this.$route, this.$route);
   }
@@ -51,9 +56,9 @@ export default class App extends Vue {
     } else {
       this.isShowSlider = false;
     }
-    // if (isMobileOrPc()) {
-    //   this.isShowSlider = false;
-    // }
+  }
+  async created() {
+    await this.userInit()
   }
 
 }
@@ -67,14 +72,15 @@ body {
 
 #app {
   height: 100%;
-  /* min-width: 1200px; */
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 74px;
+  padding-top: 74px;
 }
-
+.a {
+  margin-top: -74px;
+}
 @media screen and (min-width:1000px) {
 
   html,
@@ -85,6 +91,8 @@ body {
     display: flex;
     width: 1200px;
     margin: 0 auto;
+    margin-bottom: 150px;
+    z-index: 0;
   }
 }
 
