@@ -9,6 +9,7 @@ import axios from 'axios'
 
 export const request = (url, options = {}, baseUrl = 'http://localhost:3000') => {
   const params = options.params || {}
+  console.log(baseUrl)
   return axios(url, Object.assign(options, { params, withCredentials: true}))
     .then((response) => {
       const data = response.data

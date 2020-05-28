@@ -68,8 +68,6 @@ import {
   State,
   Getter,
   Action,
-  Mutation,
-  namespace
 } from 'vuex-class';
 import {
   Route
@@ -155,8 +153,8 @@ export default class ArticleDetails extends Vue {
   }
   async getArticleDetail(obj = null) {
     console.log(this.$route.query, 'this.$route.query')
-    let param = obj || this.$route.query
-    let res = await getList(param)
+    const param = obj || this.$route.query
+    const res = await getList(param)
     this.articleDetails = res.data
     this.content = this.articleDetails.content
   }
@@ -173,12 +171,12 @@ export default class ArticleDetails extends Vue {
   async createSubmit() {
     this.$refs['ruleForm'].validate(async (valid) => {
       if (valid) {
-        let data = {
+        const data = {
           ...this.form,
           author: this.user.nick_name,
           content: this.newContent
         }
-        let res = await createArticle(data)
+        const res = await createArticle(data)
         if (res.ok) {
           this.createStatus = !this.createStatus
           this.$refs['create'].classList.add('editHidden');
@@ -214,14 +212,14 @@ export default class ArticleDetails extends Vue {
     })
   }
   async addComment() {
-    let t = await addComments({
+    const t = await addComments({
       article_id: this.articleDetails._id,
       content: this.comment,
       user_name: this.user.name
     })
     if (t.ok) {
       // 从新获取评论列表
-      let comment = await getComment({
+      const comment = await getComment({
         _id: this.articleDetails._id
       })
       console.log(comment, ' 品论列表')
@@ -236,7 +234,7 @@ export default class ArticleDetails extends Vue {
     this.editable = val;
     if (!val) {
       // 去提交修改文章信息的接口
-      let t = await updateArticle({
+      const t = await updateArticle({
         article_id: this.articleDetails._id,
         ...this.articleDetails,
         content: this.content
@@ -245,11 +243,11 @@ export default class ArticleDetails extends Vue {
   }
   async $imgAdd(pos, $file) {
     // 第一步.将图片上传到服务器.
-    var formdata = new FormData();
+    const formdata = new FormData();
     formdata.append('image', $file);
     this.img_file[pos] = $file;
-    let res = await uploadImg(formdata)
-    let _res = res.data;
+    const res = await uploadImg(formdata)
+    const _res = res.data;
     // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
     // this.$refs.md.$img2Url(pos, _res.url);
     /**

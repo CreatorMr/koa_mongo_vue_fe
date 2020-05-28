@@ -21,11 +21,8 @@ import {
   Watch
 } from 'vue-property-decorator';
 import {
-  State,
   Getter,
   Action,
-  Mutation,
-  namespace
 } from 'vuex-class';
 import {
   Route
@@ -35,7 +32,7 @@ import {
   getCategoryList,
 } from "../api/article.js"
 @Component
-export default class cate extends Vue {
+export default class Category extends Vue {
   cateList: Array < [] > = []
   cate = {
     name: '',

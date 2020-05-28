@@ -24,7 +24,7 @@ export default new Vuex.Store({
       if(userInfo) {
         commit('userInfoInit', userInfo)
       } else {
-        let results = await getUserInfo()
+        const results = await getUserInfo()
         if(results.ok) {
           commit('userInfoInit', results.user)
         }

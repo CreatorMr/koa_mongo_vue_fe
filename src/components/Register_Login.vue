@@ -31,11 +31,7 @@ import {
   Vue
 } from "vue-property-decorator";
 import {
-  State,
-  Getter,
   Action,
-  Mutation,
-  namespace
 } from 'vuex-class';
 import {
   register,
@@ -52,8 +48,8 @@ export default class Register_Login extends Vue {
   }) handleFlag!: string;
   @Action('userInit') userInit
   // initial data
-  private btnLoading: boolean = false;
-  private loading: boolean = false;
+  private btnLoading = false;
+  private loading = false;
   private params = {
     email: "creator@creator.com",
     password: "admin",

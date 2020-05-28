@@ -34,15 +34,15 @@ import { Action } from "vuex-class";
 })
 export default class App extends Vue {
   // 是否显示
-  private isShowNav: boolean = false;
+  private isShowNav = false;
   // 是否显示slider
-  private isShowSlider: boolean = false;
+  private isShowSlider = false;
   @Action('userInit') userInit
   mounted(): void {
     this.routeChange(this.$route, this.$route);
   }
   @Watch("$route")
-  routeChange(val: Route, oldVal: Route): void {
+  routeChange(val: Route): void {
     if (val.path === "/") {
       this.isShowNav = false;
     } else {

@@ -28,8 +28,8 @@ import {
 
 @Component
 export default class Slider extends Vue {
-  private isLoadEnd: boolean = false;
-  private isLoading: boolean = false;
+  private isLoadEnd = false;
+  private isLoading = false;
   private list: Array < object > = [];
 
   mounted(): void {

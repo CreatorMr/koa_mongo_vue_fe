@@ -39,10 +39,7 @@ import {
 } from 'vue-property-decorator';
 import {
   State,
-  Getter,
   Action,
-  Mutation,
-  namespace
 } from 'vuex-class';
 import {
   Route
@@ -59,7 +56,7 @@ export default class tag extends Vue {
     name: '',
     desc: ''
   }
-  dialogVisible: Boolean = false
+  dialogVisible = false
   @State(state => state.userInfo) user
   @Action('userInit') userInit
   async getTagListM() {
@@ -81,7 +78,7 @@ export default class tag extends Vue {
       .catch(_ => {});
   }
   async addTags() {
-    let res = await addTagPost(this.tag)
+    const res = await addTagPost(this.tag)
     console.log(res, 'tianjia')
     if(res.success) {
       this.dialogVisible = false
