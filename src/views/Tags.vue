@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <el-dialog title="新增标签" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+  <el-dialog title="新增标签" :visible="dialogVisible" width="30%" :before-close="handleClose">
     <el-form>
       <el-formItem label="名称">
         <el-input v-model="tag.name" placeholder="名称" autocomplete="off">
@@ -80,7 +80,7 @@ export default class tag extends Vue {
   async addTags() {
     const res = await addTagPost(this.tag)
     console.log(res, 'tianjia')
-    if(res.success) {
+    if(res.ok) {
       this.dialogVisible = false
       this.getTagListM()
       this.$message.success('标签添加成功')
