@@ -173,7 +173,7 @@ export default class ArticleDetails extends Vue {
       if (valid) {
         const data = {
           ...this.form,
-          author: this.user.nick_name,
+          author: this.user.nick_name || '游客',
           content: this.newContent
         }
         const res = await createArticle(data)

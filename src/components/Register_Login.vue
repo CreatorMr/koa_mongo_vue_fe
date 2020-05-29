@@ -101,7 +101,8 @@ export default class Register_Login extends Vue {
         avatar: data.user.avatar
       };
       Cookies.set('jwtToken-creator',data.token, {
-        domain: 'localhost',
+        // domain: 'localhost',
+        domain: '106.53.236.144',
         expires: 7
       })
       this.$store.commit("userInfoInit", userInfo2);
