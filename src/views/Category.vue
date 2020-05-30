@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div class="category">
   <h3>分类列表</h3>
   <div class="cate">
     <div v-for="item in cateList" :key="item._id" class="cate-item">
@@ -9,7 +9,7 @@
       </router-link>
     </div>
   </div>
-
+  <Planet/>
 </div>
 </template>
 
@@ -31,7 +31,12 @@ import {
 import {
   getCategoryList,
 } from "../api/article.js"
-@Component
+import Planet from '../components/Planet.vue'
+@Component({
+  components: {
+    Planet
+  }
+})
 export default class Category extends Vue {
   cateList: Array < [] > = []
   cate = {
@@ -50,6 +55,11 @@ export default class Category extends Vue {
 }
 </script>
 <style scoped>
+.category{
+  background: black;
+  position: relative;
+  min-height: 1000px;
+}
 .cate {
   /* margin: 100px 400px; */
   display: flex;

@@ -225,6 +225,8 @@ export default class ArticleDetails extends Vue {
       console.log(comment, ' 品论列表')
       this.articleDetails.comments = comment
       this.comment = ''
+    } else {
+      this.$message.warning(t.message)
     }
   }
   get preview() {
@@ -326,7 +328,7 @@ export default class ArticleDetails extends Vue {
 
 .create {
   position: relative;
-  left: -200%;
+  left: -300%;
   top: 0;
   z-index: 0;
 }
@@ -347,7 +349,7 @@ export default class ArticleDetails extends Vue {
   }
 
   100% {
-    left: -200%;
+    left: -300%;
     height: 0%;
   }
 }
@@ -355,7 +357,7 @@ export default class ArticleDetails extends Vue {
 @keyframes blockAnimate {
   0% {
     display: none;
-    left: -200%;
+    left: -300%;
     height: 0;
   }
 

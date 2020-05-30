@@ -10,7 +10,13 @@
       描述简介: {{item.desc}}
        </router-link>
     </div>
-    
+    <el-pagination
+    background
+    :current-page.sync="params.pageNum"
+    :page-size="params.pageSize"
+    @current-change="getArticleList"  :page-sizes="[10, 20, 50, 100]" layout=" prev, pager, next"
+    :total="total">
+  </el-pagination>
   </div>
 </template>
 
@@ -23,6 +29,7 @@ import { getList } from "../api/article.js"
 export default class Article extends Vue {
   articleList: Array<[]> = []
   private tag_name = '';
+  private  total =0
   private params = {
     keyword: "",
     likes: "", // 是否是热门文章
@@ -35,6 +42,7 @@ export default class Article extends Vue {
   async getArticleList() {
     const res = await getList(this.params)
     this.articleList = res.data
+    this.total = res.count
   }
   mounted () {
     // this.$route.query

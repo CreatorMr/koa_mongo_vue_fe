@@ -25,6 +25,7 @@ import Header from "@/components/Header.vue"
 import Slider from "@/components/Slider.vue"
 import Footer from "@/components/Footer.vue"
 import { Action } from "vuex-class";
+import { RENDERER } from './utils/sakura'
 @Component({
   components: {
     Header,
@@ -45,6 +46,7 @@ export default class App extends Vue {
   routeChange(val: Route): void {
     if (val.path === "/") {
       this.isShowNav = false;
+      RENDERER.remove()
     } else {
       this.isShowNav = true;
     }
@@ -70,6 +72,12 @@ body {
   margin: 0;
 }
 
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 #app {
   height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -113,6 +121,24 @@ body {
 
   .layout {
     display: flex;
+    height: 100%;
   }
 }
+</style>
+
+<style>
+/* html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+} */
 </style>
