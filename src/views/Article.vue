@@ -1,35 +1,45 @@
 <template>
-  <div class="article">
-    <h3 v-if="params.tag_id"
-        class="left-title">{{tag_name}} 相关的文章：</h3>
-    <div v-for="item in articleList" :key="item._id" class="article-item">
-       <router-link class="router-link" :to="`/articleDetail?articleId=${item._id}`">
-      title: {{item.title}}
-      tags: {{item.tags}}
-      分类: {{item.category}}
-      描述简介: {{item.desc}}
-       </router-link>
-    </div>
-    <el-pagination
-    background
-    :current-page.sync="params.pageNum"
-    :page-size="params.pageSize"
-    @current-change="getArticleList"  :page-sizes="[10, 20, 50, 100]" layout=" prev, pager, next"
-    :total="total">
-  </el-pagination>
+<div class="article">
+  <h3 v-if="params.tag_id" class="left-title">{{tag_name}} 相关的文章：</h3>
+  <div class="search">
+    <el-input placeholder="请输入内容" v-model="params.keyword">
+    </el-input>
+    <el-button type="primary" @click="getArticleList">搜索</el-button>
   </div>
+  <div class="article-list">
+    <div v-for="item in articleList" :key="item._id" class="article-item">
+      <router-link class="router-link" :to="`/articleDetail?articleId=${item._id}`">
+        title: {{item.title}}
+        tags: {{item.tags}}
+        分类: {{item.category}}
+        描述简介: {{item.desc}}
+      </router-link>
+    </div>
+  </div>
+  <el-pagination v-if="total" background :current-page.sync="params.pageNum" :page-size="params.pageSize" @current-change="getArticleList" :page-sizes="[10, 20, 50, 100]" layout=" prev, pager, next" :total="total">
+  </el-pagination>
+</div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { Route } from "vue-router";
+import {
+  Component,
+  Prop,
+  Vue,
+  Watch
+} from 'vue-property-decorator';
+import {
+  Route
+} from "vue-router";
 
-import { getList } from "../api/article.js"
+import {
+  getList
+} from "../api/article.js"
 @Component
 export default class Article extends Vue {
-  articleList: Array<[]> = []
+  articleList: Array < [] > = []
   private tag_name = '';
-  private  total =0
+  private total = 0
   private params = {
     keyword: "",
     likes: "", // 是否是热门文章
@@ -44,16 +54,18 @@ export default class Article extends Vue {
     this.articleList = res.data
     this.total = res.count
   }
-  mounted () {
+  mounted() {
     // this.$route.query
     this.routeChange(this.$route, this.$route);
     this.getArticleList()
   }
-  
+
   @Watch("$route")
   routeChange(val: Route): void {
     // 处理 获取链接上的tag_name tag_id category_id 等
-    const { tag_id = '', tag_name = '', category_id = ''} = val.query
+    const {
+      tag_id = '', tag_name = '', category_id = ''
+    } = val.query
     this.tag_name = tag_name;
     this.params.tag_id = tag_id;
     this.params.category_id = category_id;
@@ -65,10 +77,23 @@ export default class Article extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 .article {
   margin: 5px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 170px;
+  overflow: auto;
 }
+.search{
+  display: flex;
+}
+.article-list {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
 .article-item {
   display: flex;
   flex-direction: column;
@@ -77,12 +102,15 @@ export default class Article extends Vue {
   margin-top: 20px;
   border-radius: 20px;
 }
+
 .article-item:nth-child(odd) {
   background: #2fdf3f;
 }
+
 .article-item:nth-child(even) {
   background: #7fcfe9;
 }
+
 .router-link {
   text-decoration: none;
 }

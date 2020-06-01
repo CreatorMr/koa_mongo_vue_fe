@@ -145,6 +145,7 @@ export default class ArticleDetails extends Vue {
   img_file = []
   visibleLogin = false
   async mounted() {
+
     this.getArticleDetail()
     const res = await getCategoryList({})
     this.cateList = res.cateList
@@ -215,7 +216,7 @@ export default class ArticleDetails extends Vue {
     const t = await addComments({
       article_id: this.articleDetails._id,
       content: this.comment,
-      user_name: this.user.name
+      user_name: this.user.nick_name
     })
     if (t.ok) {
       // 从新获取评论列表
@@ -249,13 +250,11 @@ export default class ArticleDetails extends Vue {
     formdata.append('image', $file);
     this.img_file[pos] = $file;
     const res = await uploadImg(formdata)
-    const _res = res.data;
     // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-    // this.$refs.md.$img2Url(pos, _res.url);
-    /**
+     /**
      * 返回图片链接之后替换 成链接的方式插入图片
      */
-
+    this.$refs.md.$img2Url(pos, res.url);
   }
   $imgDel(pos) {
     delete this.img_file[pos];

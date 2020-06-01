@@ -9,7 +9,7 @@
       <el-input type="password" placeholder="密码" v-model="params.password" autocomplete="off"></el-input>
     </el-formItem>
     <el-formItem v-if="handleFlag === 'register'" label="昵称">
-      <el-input v-model="params.name" placeholder="用户名或昵称" autocomplete="off"></el-input>
+      <el-input v-model="params.nick_name" placeholder="用户名或昵称" autocomplete="off"></el-input>
     </el-formItem>
   </el-form>
   <div slot="footer" class="dialog-footer">
@@ -53,7 +53,7 @@ export default class Register_Login extends Vue {
   private params = {
     email: "creator@creator.com",
     password: "admin",
-    name: "",
+    nick_name: "",
   };
 
   mounted() {
@@ -85,11 +85,13 @@ export default class Register_Login extends Vue {
       if(!data.ok) {
         this.$message.info(data.message)
         return
+      } else {
+        this.btnLoading = false;
       }
       // 注册成功 ，返回登录
       this.$emit('update:handleFlag', 'login')
     } else {
-      delete this.params.name
+      delete this.params.nick_name
       data = await login(this.params)
       if(!data.ok){
         this.$message.info(data.message)
@@ -97,12 +99,12 @@ export default class Register_Login extends Vue {
       }
       const userInfo2 = {
         _id: data.user._id,
-        name: data.user.nick_name,
+        nick_name: data.user.nick_name,
         avatar: data.user.avatar
       };
       Cookies.set('jwtToken-creator',data.token, {
-        // domain: 'localhost',
-        domain: '106.53.236.144',
+        domain: process.env.NODE_ENV === 'development'?'localhost':'106.53.236.144',
+        // domain: '106.53.236.144',
         expires: 7
       })
       this.$store.commit("userInfoInit", userInfo2);

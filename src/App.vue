@@ -8,7 +8,7 @@
     </div>
     <Footer/>
   </template>
-  <router-view v-else class="a"/>
+  <router-view v-else/>
 </div>
 </template>
 
@@ -84,7 +84,7 @@ html, body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  padding-top: 74px;
+  overflow-y: hidden;
 }
 .a {
   margin-top: -74px;
@@ -101,6 +101,9 @@ html, body{
     margin: 0 auto;
     margin-bottom: 150px;
     z-index: 0;
+    margin-top: 74px;
+    height: calc(100% - 240px);
+    overflow: hidden;
   }
 }
 
@@ -121,24 +124,6 @@ html, body{
 
   .layout {
     display: flex;
-    height: 100%;
   }
 }
-</style>
-
-<style>
-/* html, body{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.container{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-} */
 </style>

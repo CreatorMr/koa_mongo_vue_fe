@@ -99,7 +99,6 @@ export default class tag extends Vue {
   /* margin: 100px 400px; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .tag-item {
