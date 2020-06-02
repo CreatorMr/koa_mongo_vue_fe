@@ -32,7 +32,7 @@ fi
 
 push=$(git status | grep -e "Your branch is up")
 echo "$push"
-if [ ! "$push " ]; then
+if [ ! "$push" ]; then
  echo "本地还有未push的代码，请先push"
  exit;
 fi
