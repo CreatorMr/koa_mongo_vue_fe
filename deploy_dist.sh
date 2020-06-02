@@ -23,7 +23,7 @@ EOF
 if [ -n "$3" ]; then
 
 commit=$(git status | grep -e "nothing to commit, working tree clean" -e "nothing added to commit")
-
+echo "$commit,asdf"
 if [ ! $commit ]; 
 then
  echo "本地还有未提交的代码，请先提交"
