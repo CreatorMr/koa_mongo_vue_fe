@@ -24,15 +24,18 @@ if [ -n "$3" ]; then
 
 commit=$(git status | grep -e "nothing to commit, working tree clean" -e "nothing added to commit")
 
-if [ ! commit ]; then
+if [ ! $commit ]; then
  echo "本地还有未提交的代码，请先提交"
  exit;
 fi
 
 push=$(git status | grep -e "Your branch is up")
-if [ ！push ]; then
+echo "$push"
+if [ ! $push ]; then
  echo "本地还有未push的代码，请先push"
  exit;
+else 
+echo "adsfha"
 fi
 
 # if [ ! -e "node_modules" ]; then
