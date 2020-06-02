@@ -28,6 +28,8 @@ if [ ! $commit ];
 then
  echo "本地还有未提交的代码，请先提交"
  exit;
+ else 
+ echo ""
 fi
 
 push=$(git status | grep -e "Your branch is up")
