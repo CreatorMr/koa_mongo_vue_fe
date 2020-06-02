@@ -23,31 +23,33 @@ EOF
 if [ -n "$3" ]; then
 
 commit=$(git status | grep -e "nothing to commit, working tree clean" -e "nothing added to commit")
-if [ commit ]; then
+
+if [ ! commit ]; then
  echo "本地还有未提交的代码，请先提交"
  exit;
 fi
+
 push=$(git status | grep -e "Your branch is up")
 if [ ！push ]; then
  echo "本地还有未push的代码，请先push"
  exit;
 fi
 
-if [ ! -e "node_modules" ]; then
-  npm install -P
-else
-  npm install
-fi
-npm run build
-# 登录服务器
-expect -c "
-  spawn rsync -raqpPLv dist $1@$2:/data/app/koa_mongo_vue_fe/
-  expect {
-          \"*assword\" {set timeout 100000;send \"$3\r\";}
-          \"yes/no\" {send \"yes\r\"; exp_continue;}
-  }
+# if [ ! -e "node_modules" ]; then
+#   npm install -P
+# else
+#   npm install
+# fi
+# npm run build
+# # 登录服务器
+# expect -c "
+#   spawn rsync -raqpPLv dist $1@$2:/data/app/koa_mongo_vue_fe/
+#   expect {
+#           \"*assword\" {set timeout 100000;send \"$3\r\";}
+#           \"yes/no\" {send \"yes\r\"; exp_continue;}
+#   }
 
-  interact"
+#   interact"
 echo "部署成功"
 exit;
 else 
