@@ -124,6 +124,8 @@ html, body{
 
   .layout {
     display: flex;
+    height: calc(100% - 240px);
+    overflow: hidden;
   }
 }
 </style>
