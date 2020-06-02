@@ -37,21 +37,22 @@ if [ ! "$push" ]; then
  exit;
 fi
 
-# if [ ! -e "node_modules" ]; then
-#   npm install -P
-# else
-#   npm install
-# fi
-# npm run build
-# # 登录服务器
-# expect -c "
-#   spawn rsync -raqpPLv dist $1@$2:/data/app/koa_mongo_vue_fe/
-#   expect {
-#           \"*assword\" {set timeout 100000;send \"$3\r\";}
-#           \"yes/no\" {send \"yes\r\"; exp_continue;}
-#   }
+if [ ! -e "node_modules" ]; then
+  npm install -P
+else
+  npm install
+fi
+npm run build
+# 登录服务器
+expect -c "
+  spawn rsync -raqpPLv dist $1@$2:/data/app/koa_mongo_vue_fe/
+  expect {
+          \"*assword\" {set timeout 100000;send \"$3\r\";}
+          \"yes/no\" {send \"yes\r\"; exp_continue;}
+  }
 
-#   interact"
+  interact"
+  
 echo "部署成功"
 exit;
 else 
