@@ -23,18 +23,16 @@ EOF
 if [ -n "$3" ]; then
 
 commit=$(git status | grep -e "nothing to commit, working tree clean" -e "nothing added to commit")
-echo "$commit,asdf"
+
 if [ ! "$commit" ]; 
 then
  echo "本地还有未提交的代码，请先提交"
  exit;
- else 
- echo ""
 fi
 
 push=$(git status | grep -e "Your branch is up")
 echo "$push"
-if [ ! $push ]; then
+if [ ! "$push "]; then
  echo "本地还有未push的代码，请先push"
  exit;
 fi
