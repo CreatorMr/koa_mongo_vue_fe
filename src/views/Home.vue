@@ -46,10 +46,10 @@ export default {
         slidesPerView: 1,
         mousewheel: true,
         height: window.innerHeight, // 高度设置，占满设备高度
-        autoplay: {
-    　　　delay: 1500,
-    　　  disableOnInteraction: false
-    　　},
+    //     autoplay: {
+    // 　　　delay: 1500,
+    // 　　  disableOnInteraction: false
+    // 　　},
         speed: 1500,
         loop: true
       }

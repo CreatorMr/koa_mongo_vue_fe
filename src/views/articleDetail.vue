@@ -294,6 +294,8 @@ export default class ArticleDetails extends Vue {
   background: #76d8be;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  box-shadow: 0 4px 9px darkcyan;
 
   p {
     font-size: 12px;

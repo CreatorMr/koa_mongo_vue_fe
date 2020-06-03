@@ -9,10 +9,19 @@
   <div class="article-list">
     <div v-for="item in articleList" :key="item._id" class="article-item">
       <router-link class="router-link" :to="`/articleDetail?articleId=${item._id}`">
-        title: {{item.title}}
-        tags: {{item.tags}}
-        分类: {{item.category}}
-        描述简介: {{item.desc}}
+        <h3 class="title"> {{item.title}}</h3>
+        <div class="desc"> {{item.desc}}</div>
+
+        <div class="tags">
+          <div v-for="i in item.tags.map(_=>_.name)" :key="i">
+            {{i}}
+          </div>
+        </div>
+        <div class="category">
+          <div v-for="i in item.category.map(_=>_.name)" :key="i">
+            {{i}}
+          </div>
+        </div>
       </router-link>
     </div>
   </div>
@@ -78,20 +87,62 @@ export default class Article extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped>
+<style lang="scss" scoped>
 .article {
   margin: 5px 20px 100px;
   display: flex;
   flex-direction: column;
   padding-bottom: 170px;
   overflow: auto;
+  min-width: 60%;
 }
-.search{
+
+.search {
   display: flex;
 }
+
 .article-list {
   flex: 1;
   margin-bottom: 20px;
+
+  .title {
+    display: flex;
+  }
+
+  .desc {
+    color: #5d5151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // white-space: nowrap;
+    text-align: left;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .tags {
+    display: flex;
+    margin-top: 10px;
+
+    div {
+      border: 1px solid #ff4891;
+      margin-right: 10px;
+      padding: 1px 10px;
+      border-radius: 8px;
+      color: #FF5722;
+    }
+  }
+  .category {
+    display: flex;
+    margin-top: 10px;
+    div{
+      margin-right: 10px;
+      padding: 1px 10px;
+      border-radius: 8px;
+      color: #FF5722;
+    }
+  }
 }
 
 .article-item {

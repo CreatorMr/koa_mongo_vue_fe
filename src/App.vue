@@ -126,6 +126,9 @@ html, body{
     display: flex;
     height: calc(100% - 240px);
     overflow: hidden;
+    margin-bottom: 150px;
+    z-index: 0;
+    margin-top: 74px;
   }
 }
 </style>
