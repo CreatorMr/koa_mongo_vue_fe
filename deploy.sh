@@ -19,7 +19,7 @@ done
 4、interact：允许用户交互
 EOF
 
-if [ -n "$i" ]; then
+if [ -n "$3" ]; then
 
 # if [ ! -e "node_modules" ]; then
 #   npm install -P
