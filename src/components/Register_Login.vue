@@ -98,9 +98,11 @@ export default class Register_Login extends Vue {
         return
       }
       const userInfo2 = {
+         ...data.user,
         _id: data.user._id,
         nick_name: data.user.nick_name,
-        avatar: data.user.avatar
+        avatar: data.user.avatar,
+       
       };
       Cookies.set('jwtToken-creator',data.token, {
         domain: process.env.NODE_ENV === 'development'?'localhost':'106.53.236.144',
