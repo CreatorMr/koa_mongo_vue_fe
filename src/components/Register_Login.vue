@@ -51,8 +51,8 @@ export default class Register_Login extends Vue {
   private btnLoading = false;
   private loading = false;
   private params = {
-    email: "creator@creator.com",
-    password: "admin",
+    email: "",
+    password: "",
     nick_name: "",
   };
 
