@@ -55,3 +55,9 @@ export const addTagPost = (data) => {
     data
   })
 }
+export const addCatePost = (data) => {
+  return request('/api/admin/addCategory', {
+    method: 'POST',
+    data
+  })
+}

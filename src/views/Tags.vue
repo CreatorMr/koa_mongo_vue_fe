@@ -2,7 +2,7 @@
 <div class="">
   <h3>标签列表</h3>
   <!--  user 权限控制 -->
-  <el-button v-if="this.user.status== 'admin'" type="text" @click="dialogVisible = true">新增</el-button>
+  <el-button v-if="this.user.status== 'admin' || userShow.userShow" type="text" @click="dialogVisible = true">新增</el-button>
   <div class="tag">
     <div v-for="item in tagList" :key="item._id" class="tag-item">
       <router-link class="router-link" :key="item._id" :to="`/article?tag_id=${item._id}&tag_name=${item.name}`">
@@ -44,7 +44,7 @@ import {
 import {
   Route
 } from "vue-router";
-
+import {userShow} from './user.mixin.js'
 import {
   getTagsList,
   addTagPost
@@ -57,6 +57,10 @@ export default class tag extends Vue {
     desc: ''
   }
   dialogVisible = false
+  userShow=userShow
+  addcount() {
+    userShow.addCount()
+  }
   @State(state => state.userInfo) user
   @Action('userInit') userInit
   async getTagListM() {

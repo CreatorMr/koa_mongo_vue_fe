@@ -1,6 +1,6 @@
 <template>
 <div class="deatil">
-  <div v-if="this.user.status== 'admin' || true" class="operation">
+  <div v-if="this.user.status== 'admin' || userShow.userShow" class="operation">
     <p>admin</p>
     <el-button type="text" @click="create" v-if="!createStatus && !editable">创建</el-button>
     <el-button type="text" v-if="!editable && !createStatus" @click="edit(true)">编辑</el-button>
@@ -86,7 +86,7 @@ import {
   createArticle
 } from '../api/article.js'
 import RegisterLogin from '../components/Register_Login.vue';
-
+import { userShow } from './user.mixin.js'
 @Component({
   components: {
     RegisterLogin
@@ -98,6 +98,7 @@ export default class ArticleDetails extends Vue {
   // @Action('userInit') userInit
   cateList = []
   tagList = []
+  noAirtilce = false
   rules = {
     title: [{
       required: true,
@@ -144,9 +145,12 @@ export default class ArticleDetails extends Vue {
   createStatus = false
   img_file = []
   visibleLogin = false
+  userShow = userShow
   async mounted() {
-
-    this.getArticleDetail()
+    let query = this.$route.query
+    if(JSON.stringify(query) !== '{}') {
+      this.getArticleDetail()
+    }
     const res = await getCategoryList({})
     this.cateList = res.cateList
     const resTag = await getTagsList({})
