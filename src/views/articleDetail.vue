@@ -1,6 +1,6 @@
 <template>
 <div class="deatil">
-  <div v-if="this.user.status== 'admin'" class="operation">
+  <div v-if="this.user.status== 'admin' || true" class="operation">
     <p>admin</p>
     <el-button type="text" @click="create" v-if="!createStatus && !editable">创建</el-button>
     <el-button type="text" v-if="!editable && !createStatus" @click="edit(true)">编辑</el-button>
