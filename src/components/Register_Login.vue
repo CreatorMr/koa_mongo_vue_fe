@@ -105,8 +105,7 @@ export default class Register_Login extends Vue {
        
       };
       Cookies.set('jwtToken-creator',data.token, {
-        domain: process.env.NODE_ENV === 'development'?'localhost':'106.53.236.144',
-        // domain: '106.53.236.144',
+        domain: process.env.NODE_ENV === 'development'?'localhost':'106.52.111.158',
         expires: 7
       })
       this.$store.commit("userInfoInit", userInfo2);
