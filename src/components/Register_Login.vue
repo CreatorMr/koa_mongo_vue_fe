@@ -108,6 +108,10 @@ export default class Register_Login extends Vue {
         domain: process.env.NODE_ENV === 'development'?'localhost':'106.52.111.158',
         expires: 7
       })
+       Cookies.set('jwtToken-creator',data.token, {
+        domain: process.env.NODE_ENV === 'development'?'localhost':'creatorking.top',
+        expires: 7
+      })
       this.$store.commit("userInfoInit", userInfo2);
       window.sessionStorage.userInfo = JSON.stringify(userInfo2);
       this.$emit('ok', false)
