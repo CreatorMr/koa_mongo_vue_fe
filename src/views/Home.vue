@@ -66,7 +66,7 @@ export default {
   mounted() {
     console.log('Current Swiper instance object', this.swiper)
     this.$nextTick(_=>{
-      RENDERER.init()
+      // RENDERER.init() // 消耗性能。。。。
     })
     // this.swiper.slideTo(1, 1500, false)
   }
