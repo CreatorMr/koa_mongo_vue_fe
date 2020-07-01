@@ -157,7 +157,7 @@ export default class Article extends Vue {
   flex-direction: column;
   border: 1px solid #2fdf3f;
   padding: 20px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 20px;
 }
 
