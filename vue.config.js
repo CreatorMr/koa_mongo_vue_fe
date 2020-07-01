@@ -1,6 +1,5 @@
 const path = require("path");
 const sourceMap = process.env.NODE_ENV === "development";
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   // 基本路径
   publicPath: "./",
@@ -22,6 +21,13 @@ module.exports = {
       .use('less-loader')
       .loader('less-loader')
       .end()
+      config
+      .plugin('html')
+      .tap((args) => {
+        args[0].title = 'Learn Notes';
+        return args;
+      })
+      .end()
   },
   configureWebpack: config => {
     if (process.env.NODE_ENV === "production") {
@@ -31,12 +37,6 @@ module.exports = {
       // 为开发环境修改配置...
       config.mode = "development";
     }
-    config.plugins.forEach((val) => {
-        if (val instanceof HtmlWebpackPlugin) {
-            console.log(val, '------------------')
-            val.options.title ="学习笔记"
-        }
-    })
 
     Object.assign(config, {
       // 开发生产共同配置
