@@ -89,7 +89,7 @@ export default class Article extends Vue {
 
 <style lang="scss" scoped>
 .article {
-  margin: 5px 20px 100px;
+  margin: 5px 20px 10px;
   display: flex;
   flex-direction: column;
   padding-bottom: 170px;
@@ -99,6 +99,7 @@ export default class Article extends Vue {
 
 .search {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .article-list {
