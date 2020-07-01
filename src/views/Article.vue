@@ -95,14 +95,14 @@ export default class Article extends Vue {
   padding-bottom: 170px;
   overflow: auto;
   min-width: 60%;
-
+  padding-top: 25px;
   .search {
     display: flex;
-    flex: 1;
     background: #d2cf2a;
     justify-content: center;
     align-items: center;
     padding: 10px;
+    height: 40px;
   }
 }
 
