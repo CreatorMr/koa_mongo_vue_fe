@@ -21,11 +21,11 @@ EOF
 
 if [ -n "$3" ]; then
 
-if [ ! -e "node_modules" ]; then
-  npm install -P
-else
-  npm install
-fi
+# if [ ! -e "node_modules" ]; then
+#   npm install -P
+# else
+#   npm install
+# fi
 
 # 判断本地状态
 git status
