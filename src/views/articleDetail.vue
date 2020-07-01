@@ -285,6 +285,7 @@ export default class ArticleDetails extends Vue {
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
+  padding: 20px 40px;
 }
 
 .deatil>>>.v-note-wrapper.shadow {

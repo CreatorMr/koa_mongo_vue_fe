@@ -128,7 +128,7 @@ html, body{
     overflow: hidden;
     margin-bottom: 150px;
     z-index: 0;
-    margin-top: 74px;
+    margin-top: 84px;
   }
 }
 </style>
