@@ -15,7 +15,8 @@
       <p class="tag">{{articleDetails.tags.map(_=>_.name).join(',')}}</p>
     </div>
     <mavon-editor v-if="editable" :ishljs="true" v-model="content" ref='md' @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
-    <mavon-editor v-else :ishljs="true" :subfield="false" :editable="false" defaultOpen="preview" :toolbarsFlag="false" v-model="content" ref='md'></mavon-editor>
+    <!-- <mavon-editor v-else :ishljs="true" :subfield="false" :editable="false" defaultOpen="preview" :toolbarsFlag="false" v-model="content" ref='md'></mavon-editor> -->
+    <markdown-it-vue v-else class="md-body" :content="content"/>
     <div class="comment">
       评论：
       <!-- <el-input placeholder='输入评论'></el-input> -->
@@ -87,9 +88,13 @@ import {
 } from '../api/article.js'
 import RegisterLogin from '../components/Register_Login.vue';
 import { userShow } from './user.mixin.js'
+
+import MarkdownItVue from 'markdown-it-vue'
+import 'markdown-it-vue/dist/markdown-it-vue.css'
 @Component({
   components: {
-    RegisterLogin
+    RegisterLogin,
+    MarkdownItVue
   },
 })
 export default class ArticleDetails extends Vue {
@@ -331,7 +336,9 @@ export default class ArticleDetails extends Vue {
   top: 0;
   z-index: 0;
 }
-
+.md-body{
+  text-align: left;
+}
 .create {
   position: relative;
   left: -300%;
