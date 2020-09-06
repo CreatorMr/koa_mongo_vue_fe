@@ -84,6 +84,7 @@ html, body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+
   overflow-y: hidden;
 }
 .a {
@@ -119,7 +120,7 @@ html, body{
 
   html,
   body {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .layout {

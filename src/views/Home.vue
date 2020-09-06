@@ -1,74 +1,70 @@
 <template>
 <div class="home" ref="home">
-  <div id="sakura-container" ></div>
-  <swiper ref="mySwiper" :options="swiperOptions">
-    <swiper-slide>
+  <!-- <div id="sakura-container" ></div> -->
+  <SwiperSlideCom bg="../assets/timg.jpeg"/>
       <!-- <img class="bgImg" src="../assets/timg.jpeg" alt="" srcset=""> -->
-      <SwiperSlideCom bg="../assets/timg.jpeg"/>
-    </swiper-slide>
-    <swiper-slide>
-      <img class="bgImg" src="../assets/timg.jpeg" alt="" srcset="">
-      <SwiperSlideCom />
-    </swiper-slide>
-    <swiper-slide>
-      <img class="bgImg" src="../assets/timg2.jpeg" alt="" srcset="">
-    </swiper-slide>
-    <div class="swiper-pagination" slot="pagination"></div>
-  </swiper>
+      <Login/>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import test from '../components/test.md'
+// import test from '../components/test.md'
 import SwiperSlideCom from '../components/swiper-slide.vue'
-import {
-  Swiper,
-  SwiperSlide,
-  directive
-} from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
-import { RENDERER } from '../utils/sakura.js'
+// import {
+//   Swiper,
+//   SwiperSlide,
+//   directive
+// } from 'vue-awesome-swiper'
+// import 'swiper/css/swiper.css'
+// import { RENDERER } from '../utils/sakura.js'
+import Login from '../components/login.vue'
+import { Snow}  from '../utils/snow.js'
 export default {
   name: 'Home',
   components: {
-    Swiper,
-    SwiperSlide,
-    SwiperSlideCom
+    // Swiper,
+    // SwiperSlide,
+    SwiperSlideCom,
+    Login
   },
-  directives: {
-    swiper: directive
-  },
+  // directives: {
+  //   swiper: directive
+  // },
   data() {
     return {
-      swiperOptions: {
-        direction: 'vertical',
-        slidesPerView: 1,
-        mousewheel: true,
-        height: window.innerHeight, // 高度设置，占满设备高度
-    //     autoplay: {
-    // 　　　delay: 1500,
-    // 　　  disableOnInteraction: false
-    // 　　},
-        speed: 1500,
-        loop: true
-      }
+    //   swiperOptions: {
+    //     direction: 'vertical',
+    //     slidesPerView: 1,
+    //     mousewheel: true,
+    //     height: window.innerHeight, // 高度设置，占满设备高度
+    // //     autoplay: {
+    // // 　　　delay: 1500,
+    // // 　　  disableOnInteraction: false
+    // // 　　},
+    //     speed: 1500,
+    //     loop: false
+    //   }
     }
   },
   computed: {
-    swiper() {
-      return this.$refs.mySwiper.$swiper
-    }
+   
   },
   methods: {
    
   },
   mounted() {
-    console.log('Current Swiper instance object', this.swiper)
     this.$nextTick(_=>{
       // RENDERER.init() // 消耗性能。。。。
+      let snow = new Snow()
+      this.interval = setInterval(function(){
+        snow.play()
+      }, 500)
     })
     // this.swiper.slideTo(1, 1500, false)
+  },
+  destory() {
+    clearInterval(this.interval)
   }
 }
 </script>
@@ -77,6 +73,7 @@ export default {
 .home {
   width: 100%;
   height: 100%;
+  background: black;
 }
 
 .swiper-container {

@@ -6,7 +6,7 @@
       </router-link>
   </li>
   <li>
-    <router-link class="header__nav-item" :to="{name: 'Article'}"> <p class="linear-text"  @click="a" ref="a"> 文章</p></router-link>
+    <router-link class="header__nav-item" :to="{name: 'Article'}"> <p class="linear-text"> 文章</p></router-link>
   </li>
   <li>
     <router-link class="header__nav-item" :to="{name: 'Category'}"> <p class="linear-text">分类</p></router-link>
