@@ -12,6 +12,7 @@ export class Snow {
     this.interval = null
   }
   play() {
+    console.log(1)
     let div = document.createElement('div'),
     $app = document.getElementById('app');
     div.setAttribute('id', 'flake')
@@ -27,7 +28,6 @@ export class Snow {
     div.style.left = startPositionLeft + 'px'
     div.style.opacity = startOpacity
     div.style.fontSize = ~~sizeFlake + 'px'
-    console.log(~~sizeFlake, 'sizeFlake')
     div.style.color = this.options.flakeColor
     div.animate([
         { top: endPositionTop,left: endPositionLeft, opacity: 0.2}, 
@@ -36,5 +36,9 @@ export class Snow {
         easing: 'linear' 
     })
     $app.appendChild(div)
+    let arr = document.querySelectorAll('#flake')
+    if(arr.length > 50) {
+      [...arr].forEach(item => item.remove())
+    }
   }
 }

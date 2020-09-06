@@ -63,7 +63,7 @@ export default {
     })
     // this.swiper.slideTo(1, 1500, false)
   },
-  destory() {
+  destroyed() {
     clearInterval(this.interval)
   }
 }
