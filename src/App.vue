@@ -84,12 +84,9 @@ html, body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-
   overflow-y: hidden;
 }
-.a {
-  margin-top: -74px;
-}
+
 @media screen and (min-width:1000px) {
 
   html,
@@ -98,8 +95,8 @@ html, body{
   }
   .layout{
     display: flex;
-    width: 1200px;
-    margin: 0 auto;
+    /* width: 1200px; */
+    margin: 0 100px;
     margin-bottom: 150px;
     z-index: 0;
     margin-top: 74px;
@@ -108,13 +105,7 @@ html, body{
   }
 }
 
-@media screen and (max-width:1000px) and (min-width:768px) {
-
-  html,
-  body {
-    font-size: 13px;
-  }
-}
+@media screen and (max-width:1000px) and (min-width:768px) {}
 
 @media screen and (max-width:768px) {
 

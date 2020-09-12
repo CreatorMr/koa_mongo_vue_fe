@@ -7,7 +7,7 @@
     <el-button type="primary" @click="getArticleList">搜索</el-button>
   </div>
   <div class="article-list">
-    <div v-for="item in articleList" :key="item._id" class="article-item">
+    <!-- <div v-for="item in articleList" :key="item._id" class="article-item">
       <router-link class="router-link" :to="`/articleDetail?articleId=${item._id}`">
         <h3 class="title"> {{item.title}}</h3>
         <div class="desc"> {{item.desc}}</div>
@@ -23,6 +23,30 @@
           </div>
         </div>
       </router-link>
+    </div> -->
+    <div class="wrapper">
+      <div class="box" v-for="item in articleList" :key="item._id">
+        <router-link class="router-link" :to="`/articleDetail?articleId=${item._id}`">
+          <div class="front-face">
+            <div class="icon"><i class="el-icon-edit"></i></div>
+            <span>{{item.title}}</span>
+            <div class="tags">
+              <div v-for="i in item.tags.map(_=>_.name)" :key="i">
+                {{i}}
+              </div>
+            </div>
+            <div class="category">
+              <div v-for="i in item.category.map(_=>_.name)" :key="i">
+                {{i}}
+              </div>
+            </div>
+          </div>
+          <div class="back-face">
+            <span>{{item.title}}</span>
+            <p>{{item.desc}}</p>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
   <el-pagination v-if="total" background :current-page.sync="params.pageNum" :page-size="params.pageSize" @current-change="getArticleList" :page-sizes="[10, 20, 50, 100]" layout=" prev, pager, next" :total="total">
@@ -96,6 +120,7 @@ export default class Article extends Vue {
   overflow: auto;
   min-width: 60%;
   padding-top: 25px;
+
   .search {
     display: flex;
     background: #d2cf2a;
@@ -105,8 +130,6 @@ export default class Article extends Vue {
     height: 40px;
   }
 }
-
-
 
 .article-list {
   flex: 1;
@@ -140,10 +163,12 @@ export default class Article extends Vue {
       color: #FF5722;
     }
   }
+
   .category {
     display: flex;
     margin-top: 10px;
-    div{
+
+    div {
       margin-right: 10px;
       padding: 1px 10px;
       border-radius: 8px;
@@ -171,5 +196,97 @@ export default class Article extends Vue {
 
 .router-link {
   text-decoration: none;
+}
+
+.wrapper {
+  display: grid;
+  margin: 200px 90px auto;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  .box {
+    width: 350px;
+    margin: 0 auto;
+    position: relative;
+    perspective: 1000px;
+
+    .front-face {
+      background: #fff;
+      height: 220px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      box-shadow: 0 5px 20px 0px rgba(0, 81, 250, 0.1);
+      transition: all 0.5s ease;
+
+      .icon {
+        height: 80px;
+
+        i {
+          font-size: 65px;
+          background: linear-gradient(-135deg, #c850c0, #4158d0);
+        }
+      }
+
+      span {
+        font-size: 22px;
+        font-weight: 600;
+        text-transform: uppercase;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .back-face {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+      z-index: 1;
+      height: 220px;
+      width: 100%;
+      padding: 30px;
+      opacity: 0;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      background: linear-gradient(-135deg, #c850c0, #4158d0);
+      transform: translateY(110px) rotateX(-90deg);
+      transition: all 0.5s ease;
+
+      span {
+        font-size: 22px;
+        font-weight: 600;
+        text-transform: uppercase;
+        // background: linear-gradient(-135deg, #c850c0, #4158d0);
+        // -webkit-background-clip: text;
+      }
+
+      p {
+        margin-top: 10px;
+        text-align: justify;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+
+  .box:hover {
+    .back-face {
+      opacity: 1;
+      transform: rotateX(0deg);
+    }
+
+    .front-face {
+      opacity: 0;
+      transform: translateY(-110px) rotateX(90deg);
+    }
+  }
 }
 </style>

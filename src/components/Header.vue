@@ -164,7 +164,7 @@ a {
   text-decoration: none;
 }
 
-@media screen and (min-width:1000px) {
+@media screen and (min-width:768px) {
 
   html,
   body {
@@ -233,13 +233,13 @@ a {
   }
 }
 
-@media screen and (max-width:1000px) and (min-width:768px) {
+// @media screen and (max-width:1000px) and (min-width:768px) {
 
-  html,
-  body {
-    font-size: 13px;
-  }
-}
+//   html,
+//   body {
+//     font-size: 13px;
+//   }
+// }
 
 @media screen and (max-width:768px) {
 
