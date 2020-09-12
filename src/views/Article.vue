@@ -200,8 +200,8 @@ export default class Article extends Vue {
 
 .wrapper {
   display: grid;
-  margin: 200px 90px auto;
-  grid-gap: 20px;
+  margin: 0 90px auto;
+  grid-gap: 80px;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
   .box {
