@@ -1,26 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    {{a}}
+    <img alt="Vue logo" src="../assets/logo.png" />
+    {{ a }}
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import test from '../components/test.md'
+import test from "../components/test.md";
 export default {
-  name: 'Home',
-  components: {
-  },
+  name: "Home",
+  components: {},
   data() {
     return {
-      a: test
-    }
-  }
-}
+      a: test,
+    };
+  },
+};
 </script>
+
 <style lang="scss" scoped>
-.home{
+.home {
   width: 100%;
 }
 </style>
